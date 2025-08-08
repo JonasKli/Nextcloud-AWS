@@ -57,7 +57,7 @@ After the instance is running, note down the public IP address (e.g. 65.1.93.21)
 
 ## Step 3: Install and Configure Nextcloud
 Once connected to your instance, run the following commands
-1. sudo us
+1. sudo su
 2. sudo apt update && sudo apt upgrade -y
 3. sudo snap install nextcloud
 4. snap changes nextcloud
