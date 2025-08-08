@@ -1,6 +1,8 @@
 # Nextcloud-AWS
 This repository contains a step-by-step guide for setting up your own cloud storage solution using Nextcloud on Amazon Web Services (AWS).
 
+---
+
 ## Step 1: Launch an AWS EC2 Instance
 
 1.1 Open the AWS Management Console
