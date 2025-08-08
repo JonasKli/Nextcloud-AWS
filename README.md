@@ -74,6 +74,7 @@ Step 3.1: Verify Security Groups
 ---
 
 ## Step 4: Create a Swap Partition
+
 4.1 fallocate --length 2GiB /mnt/swapfile
 4.2 chmod 600 /mnt/swapfile
 4.3 mkswap /mnt/swapfile
