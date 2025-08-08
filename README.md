@@ -105,9 +105,11 @@ Check the current list of trusted domains:
 If you try to access your server via IP (e.g., http://65.1.93.21) and get the error:
 "Access through untrusted domain"
 You need to add the IP to the list of trusted domains:
+
 7.1 sudo nextcloud.occ config:system:set trusted_domains 1 --value=65.1.93.21
 
 Verify again:
+
 7.2 sudo nextcloud.occ config:system:get trusted_domains
 
 You should now see your IP address listed.
