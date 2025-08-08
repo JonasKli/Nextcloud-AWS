@@ -41,7 +41,7 @@ Under Storage, change the size from 1x8 GB to 1x30 GB — this is still within t
 
 1.6 Launch the Instance
 Click “Launch Instance”.
-After the instance is running, note down the public IP address (e.g. 65.1.93.21) — you’ll use this for connecting via SSH and accessing your Nextcloud later.
+After the instance is running, note down the public IP address (e.g. 65.1.93.21) — you’ll use this for connecting and accessing your Nextcloud later.
 
 ## Step 2: Connect to the EC2 Instance
 
