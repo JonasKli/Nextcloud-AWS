@@ -56,13 +56,16 @@ After the instance is running, note down the public IP address (e.g. 65.1.93.21)
 ---
 
 ## Step 3: Install and Configure Nextcloud
+
 Once connected to your instance, run the following commands
+
 1. sudo su
 2. sudo apt update && sudo apt upgrade -y
 3. sudo snap install nextcloud
 4. snap changes nextcloud
 
 Step 3.1: Verify Security Groups
+
 3.2 In the EC2 dashboard, click on your Instance ID.
 
 3.3 Navigate to the Networking tab.
@@ -94,6 +97,7 @@ To verify swap is active:
 ---
 
 ## Step 5: Configure Firewall
+
 5.1 sudo ufw allow 80,443/tcp
 
 ----
