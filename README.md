@@ -28,6 +28,7 @@ Name it keynextcloud, then click “Create key pair” and download the .pem fil
 
 1.4 Configure Network Access
 Scroll down to the Network Settings section and enable the following inbound rules:
+
 ✅ Allow SSH traffic from anywhere
 
 ✅ Allow HTTPS traffic from the internet
