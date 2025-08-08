@@ -3,6 +3,20 @@ This repository contains a step-by-step guide for setting up your own cloud stor
 
 ---
 
+## Table of Contents
+
+- [Step 1: Launch an AWS EC2 Instance](#step-1-launch-an-aws-ec2-instance)  
+- [Step 2: Connect to the EC2 Instance](#step-2-connect-to-the-ec2-instance)  
+- [Step 3: Install and Configure Nextcloud](#step-3-install-and-configure-nextcloud)  
+- [Step 3.1: Verify Security Groups](#step-31-verify-security-groups)  
+- [Step 4: Create a Swap Partition](#step-4-create-a-swap-partition)  
+- [Step 5: Configure Firewall](#step-5-configure-firewall)  
+- [Step 6: Manual Nextcloud Installation](#step-6-manual-nextcloud-installation)  
+- [Step 7: Fix "Access through untrusted domain" Error](#step-7-fix-access-through-untrusted-domain-error)  
+- [Step 8: Access Nextcloud in Your Browser](#step-8-access-nextcloud-in-your-browser)  
+
+---
+
 ## Step 1: Launch an AWS EC2 Instance
 
 1.1 Open the AWS Management Console
