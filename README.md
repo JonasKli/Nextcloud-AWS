@@ -42,7 +42,7 @@ Under Storage, change the size from 1x8 GB to 1x30 GB — this is still within t
 Click “Launch Instance”.
 After the instance is running, note down the public IP address (e.g. 65.1.93.21) — you’ll use this for connecting via SSH and accessing your Nextcloud later.
 
-Step 2: Connect to the EC2 Instance
+## Step 2: Connect to the EC2 Instance
 
 2.1 Go to the Instances page in the AWS EC2 dashboard.
 
@@ -52,8 +52,9 @@ Step 2: Connect to the EC2 Instance
 
 2.4 Click “Connect” and choose EC2 Instance Connect and click connect 
 
+---
 
-Step 3: Install and Configure Nextcloud
+## Step 3: Install and Configure Nextcloud
 Once connected to your instance, run the following commands
 1. sudo us
 2. sudo apt update && sudo apt upgrade -y
@@ -69,9 +70,9 @@ Step 3.1: Verify Security Groups
 ✅ HTTPS
 ✅ HTTP
 
+---
 
-
-Step 4: Create a Swap Partition
+## Step 4: Create a Swap Partition
 4.1 fallocate --length 2GiB /mnt/swapfile
 4.2 chmod 600 /mnt/swapfile
 4.3 mkswap /mnt/swapfile
@@ -80,17 +81,19 @@ Step 4: Create a Swap Partition
 To verify swap is active:
 4.5 htop
 
-Step 5: Configure Firewall
-5.1 sudo ufw allow 80,443/tcp
+---
 
-Step 6: Manual Nextcloud Installation
+## Step 5: Configure Firewall
+5.1 sudo ufw allow 80,443/tcp
+---
+## Step 6: Manual Nextcloud Installation
 Install Nextcloud with a username and password:
 6.1 sudo nextcloud.manual-install testuser password1234
 
 Check the current list of trusted domains:
 6.2 sudo nextcloud.occ config:system:get trusted_domains
 
-Step 7: Fix "Access through untrusted domain" Error
+## Step 7: Fix "Access through untrusted domain" Error
 If you try to access your server via IP (e.g., http://65.1.93.21) and get the error:
 "Access through untrusted domain"
 You need to add the IP to the list of trusted domains:
@@ -100,8 +103,8 @@ Verify again:
 7.2 sudo nextcloud.occ config:system:get trusted_domains
 
 You should now see your IP address listed.
-
-Step 8: Access Nextcloud in Your Browser
+---
+## Step 8: Access Nextcloud in Your Browser
 
 8.1 Open your browser and go to:
 http://65.1.93.21
