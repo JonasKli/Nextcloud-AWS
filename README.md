@@ -64,9 +64,13 @@ Once connected to your instance, run the following commands
 
 Step 3.1: Verify Security Groups
 3.2 In the EC2 dashboard, click on your Instance ID.
+
 3.3 Navigate to the Networking tab.
+
 3.4 Click on the Network Interface ID.
+
 3.5 Check the Security Groups — you should see rules for:
+
 ✅ SSH
 ✅ HTTPS
 ✅ HTTP
