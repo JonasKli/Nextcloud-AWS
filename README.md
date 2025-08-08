@@ -1,64 +1,115 @@
 # Nextcloud-AWS
-In this repository is a step for step process of setting up your own cloud storage solution using Nextcloud on AWS
+This repository contains a step-by-step guide for setting up your own cloud storage solution using Nextcloud on Amazon Web Services (AWS).
 
-Schritt 1. AWS EC2-Instanz starten
+Step 1: Launch an AWS EC2 Instance
 
-AWS Management Console öffnen
-Gehe zu https://aws.amazon.com und melde dich an.
+1.1 Open the AWS Management Console
+Go to https://aws.amazon.com and log in to your account.
 
-2. EC2-Dashboard öffnen
-Suche im Suchfeld oben nach „EC2“ und öffne den EC2-Dienst.
+1.2 Open the EC2 Dashboard
+Search for “EC2” in the top search bar and select the EC2 service.
 
-3. Instanz starten
+1.3 Launch a New Instance
 
-Klicke auf „Instanzen“ > „Instanz starten“.
+Click on “Instances” > “Launch Instance”
 
-Gebe deiner Instanz einen Namen
-z.B Nextcloud
+Give your instance a name, e.g., Nextcloud
 
-Wähle ein Amazon Machine Image (AMI):
+Choose an Amazon Machine Image (AMI):
 
-Wähle Ubuntu Server 22.04 LTS (oder eine ähnliche Version).
+Select Ubuntu Server 22.04 LTS (or a similar version).
 
-Wähle eine Instanzgröße (z.B. t3.micro für Testzwecke, kostenlos im AWS Free Tier).
+Choose an instance type: For testing purposes, select t3.micro (included in the AWS Free Tier).
 
-Erstelle oder wähle ein bestehendes SSH-Schlüsselpaar (wichtig für die Verbindung!).
-Name: keynextcloud
+Create or select an existing SSH key pair
+Name it keynextcloud, then click “Create key pair” and download the .pem file.
 
-Danach auf "Schlüssel paar erstellen" dücken
+1.4 Configure Network Access
+Scroll down to the Network Settings section and enable the following inbound rules:
+✅ Allow SSH traffic from anywhere
 
-Bei dem Punkt Netzwerk nach unten gehen und alle drei punkte aktivieren
-"Allow SSH traffic from"
-"Allow HTTPS traffic from Internet"
-"Allow HTTP traffic from the internet"
+✅ Allow HTTPS traffic from the internet
 
-Als nächstes beim Punkt Configure Storage (wenn man möchte)
-die Größe von 1x8 auf = 1x30 erstellen, da wir im free tier die möglichkeit dazu haben
+✅ Allow HTTP traffic from the internet
 
-Starte die Instanz.
+1.5 Configure Storage
+(Optional, but recommended)
+Under Storage, change the size from 1x8 GB to 1x30 GB — this is still within the Free Tier limit.
 
-IP-Adresse notieren
-Notiere die öffentliche IP der Instanz (z.B. 65.1.93.21), die du für die Verbindung und später für den Nextcloud-Zugriff brauchst.
+1.6 Launch the Instance
+Click “Launch Instance”.
+After the instance is running, note down the public IP address (e.g. 65.1.93.21) — you’ll use this for connecting via SSH and accessing your Nextcloud later.
 
-Schritt 2: verbindung zur EC2-Instanz herstellen
+Step 2: Connect to the EC2 Instance
 
-Wir gehen auf unsere Instanz welche wir erstellt haben und copieren und die Public ip adresse z.B 65.1.93.21, danach auf "Connect" drücken 
+2.1 Go to the Instances page in the AWS EC2 dashboard.
+
+2.2 Select your running instance.
+
+2.3 Copy the Public IP address (e.g. 65.1.93.21).
+
+2.4 Click “Connect” and choose EC2 Instance Connect and click connect 
 
 
-Schritt 3: Nextcloud Installieren 
-wir geben folgende befehle ein
+Step 3: Install and Configure Nextcloud
+Once connected to your instance, run the following commands
 1. sudo us
-2.sudo apt update && sudo apt upgrade -y
-3.sudo snap install nextcloud
-4.snap changes nextcloud
+2. sudo apt update && sudo apt upgrade -y
+3. sudo snap install nextcloud
+4. snap changes nextcloud
 
-Jetzt gehen wir auf unsere Instanz zurück und klicken auf die Instance-ID, dann auf den Networking bereich gehen und die Interface id anklicken. 
-Dort wird die Security Group angezeigt, hier sollten wir drei sehen
-Type
-SSH
-HTTPS
-HTTP
+Step 3.1: Verify Security Groups
+3.2 In the EC2 dashboard, click on your Instance ID.
+3.3 Navigate to the Networking tab.
+3.4 Click on the Network Interface ID.
+3.5 Check the Security Groups — you should see rules for:
+✅ SSH
+✅ HTTPS
+✅ HTTP
 
-Es wird jetzt eine Slap partichen erstellt, dafür gehen wir wieder zurück auf die Instanz mit der wir verbunden sind damit wir mehr 
-Wir geben ein 
-"HTOP
+
+
+Step 4: Create a Swap Partition
+4.1 fallocate --length 2GiB /mnt/swapfile
+4.2 chmod 600 /mnt/swapfile
+4.3 mkswap /mnt/swapfile
+4.4 swapon /mnt/swapfile
+
+To verify swap is active:
+4.5 htop
+
+Step 5: Configure Firewall
+5.1 sudo ufw allow 80,443/tcp
+
+Step 6: Manual Nextcloud Installation
+Install Nextcloud with a username and password:
+6.1 sudo nextcloud.manual-install testuser password1234
+
+Check the current list of trusted domains:
+6.2 sudo nextcloud.occ config:system:get trusted_domains
+
+Step 7: Fix "Access through untrusted domain" Error
+If you try to access your server via IP (e.g., http://65.1.93.21) and get the error:
+"Access through untrusted domain"
+You need to add the IP to the list of trusted domains:
+7.1 sudo nextcloud.occ config:system:set trusted_domains 1 --value=65.1.93.21
+
+Verify again:
+7.2 sudo nextcloud.occ config:system:get trusted_domains
+
+You should now see your IP address listed.
+
+Step 8: Access Nextcloud in Your Browser
+
+8.1 Open your browser and go to:
+http://65.1.93.21
+
+8.2 Log in using the credentials you created earlier:
+
+8.3 Username or Email: testuser
+
+8.4 Password: password1234
+
+8.5 You should now have full access to your self-hosted Nextcloud server running on AWS.
+
+and now we are done! 
