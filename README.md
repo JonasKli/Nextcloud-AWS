@@ -95,10 +95,13 @@ To verify swap is active:
 ----
 
 ## Step 6: Manual Nextcloud Installation
+
 Install Nextcloud with a username and password:
+
 6.1 sudo nextcloud.manual-install testuser password1234
 
 Check the current list of trusted domains:
+
 6.2 sudo nextcloud.occ config:system:get trusted_domains
 
 ## Step 7: Fix "Access through untrusted domain" Error
