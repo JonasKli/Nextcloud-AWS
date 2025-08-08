@@ -84,6 +84,7 @@ Step 3.1: Verify Security Groups
 4.4 swapon /mnt/swapfile
 
 To verify swap is active:
+
 4.5 htop
 
 ---
