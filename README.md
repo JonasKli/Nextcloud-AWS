@@ -85,7 +85,9 @@ To verify swap is active:
 
 ## Step 5: Configure Firewall
 5.1 sudo ufw allow 80,443/tcp
----
+
+----
+
 ## Step 6: Manual Nextcloud Installation
 Install Nextcloud with a username and password:
 6.1 sudo nextcloud.manual-install testuser password1234
@@ -103,7 +105,9 @@ Verify again:
 7.2 sudo nextcloud.occ config:system:get trusted_domains
 
 You should now see your IP address listed.
+
 ---
+
 ## Step 8: Access Nextcloud in Your Browser
 
 8.1 Open your browser and go to:
